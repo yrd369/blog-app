@@ -7,6 +7,7 @@ const schema = new Schema({
   },
 }); // This line of code is used create a schema of types to store the values
 
+// creating data
 const personSchema = mongoose.model("person", schema); // This line creates a collection in database
 
 // For dynamic use I have created this function here and call it on router.js
