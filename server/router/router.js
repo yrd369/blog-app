@@ -1,16 +1,26 @@
 import express from "express";
-import { dataCreation } from "../models/model.js";
+import {
+  getDatas,
+  getSingleData,
+  postData,
+  deleteData,
+  editData,
+} from "../controller/controller.js";
 
 const router = express.Router();
 
-router.post("/", (req, res) => {
-  res.json(req.body);
-  dataCreation(req.body); // I call the function which is created on model.js file
-});
+// to get all blogs
+router.get("/", getDatas);
 
-router.get("/", (req, res) => {
-  res.json({
-    id: 1,
-  });
-});
+// to get a  sinlge blog
+router.get("/:id", getSingleData);
+
+// to post a blog
+router.post("/", postData);
+
+// to delete a particular blog
+router.delete("/:id", deleteData);
+
+// to edit a particular data
+router.patch("/:id", editData);
 export default router;

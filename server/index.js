@@ -4,17 +4,20 @@ import mongoose from "mongoose";
 import "dotenv/config";
 
 const server = express();
-const port = 3000;
-server.use(express.json());
 
+// middleware
+server.use(express.json());
 server.use(router);
 
-server.listen(port, () => {
-  console.log("server is running on" + port);
-});
-
+// database connect
 try {
-  mongoose.connect(process.env.MONGO_URL);
+  if (mongoose.connect(process.env.MONGO_URL)) {
+    
+    // port listening
+    server.listen(process.env.PORT, () => {
+      console.log("server is running on" + process.env.PORT);
+    });
+  }
 } catch (err) {
   console.log(err);
 }
